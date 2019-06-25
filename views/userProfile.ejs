@@ -1,0 +1,66 @@
+<% include _header %>
+<main>
+  <div class="container">
+    <div class="row h1 text-light text-center">
+      <div class="col mt-5">
+        <span id="titleusername"></span>´s profile
+      </div>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <div class="row text-light">
+      <div class="col mt-5 mr-3 bg-dark">
+        <div class="row h3">
+          <div class="col text-center">Profile data</div>
+        </div>
+        <div class="row">
+          <div class="col-5">Username:</div>
+          <div class="col-5" id="username"></div>
+        </div>
+        <div class="row">
+          <div class="col-5">Email:</div>
+          <div class="col-5" id="email"></div>
+        </div>
+      </div>
+      <div class="col mt-5 ml-3 bg-dark">
+        <div class="row h3">
+          <div class="col text-center">Books</div>
+        </div>
+        <div class="row">
+          <div class="col">Title: <span id="title"></span></div>
+        </div>
+        <div class="row">
+          <div class="col">Author:<span id="author"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  const token = sessionStorage.getItem("token");
+
+  // var decoded = jwt_decode(token);
+
+  const path = location.pathname;
+  let id = path.split(["/"]).slice(-1)[0];
+  console.log(id)
+
+  fetch("/api/users/" + id, {
+    //es una promesa
+    headers: {
+      "Content-type": "application/json",
+      Authorization: "Bearer " + token
+    }
+  }).then(response => {
+    if (response.ok) {
+      console.log(window.location.href)
+      response.json().then(user => {
+        document.getElementById("titleusername").innerHTML = user.username;
+        document.getElementById("username").innerHTML = user.username;
+        document.getElementById("email").innerHTML = user.email;
+      });
+    }
+  });
+</script>
+<% include _footer %>

@@ -1,0 +1,116 @@
+<% include _header %>
+<main>
+  <div class="container">
+    <table class="table table-warning text-center mt-5">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Admin</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="table"></tbody>
+    </table>
+  </div>
+  <div id="divUser" class="text-center"></div>
+</main>
+
+<script>
+  const token = sessionStorage.getItem("token");
+  if (!token) {
+    location.href = "/login";
+  }
+
+  var decoded = jwt_decode(token);
+
+  fetch("api/users", {
+    //es una promesa
+    headers: {
+      "Content-type": "application/json",
+      Authorization: "Bearer " + token
+    }
+  }).then(response => {
+    if (response.ok) {
+      if (decoded.isAdmin) {
+        const aUser = document.createElement("a");
+        aUser.setAttribute("href", "/newUser");
+        const btnUser = document.createElement("input");
+        // btnUser.setAttribute("href", "/newUser");
+        btnUser.onclick = () => {
+          location.href = "/newUser" + user._id;
+        };
+        btnUser.setAttribute("type", "button");
+        btnUser.setAttribute("class", "btn btn-primary");
+        btnUser.setAttribute("value", "New User");
+        aUser.appendChild(btnUser);
+        document.getElementById("divUser").appendChild(aUser);
+        response.json().then(json =>
+          json.map(user => {
+            const tr = document.createElement("tr");
+            document.getElementById("table").appendChild(tr);
+            const td1 = document.createElement("td");
+            const td2 = document.createElement("td");
+            const td3 = document.createElement("td");
+            const td4 = document.createElement("td");
+            const td5 = document.createElement("td");
+            tr.append(td1, td2, td3, td4, td5);
+            const btnDelete = document.createElement("button");
+            td4.appendChild(btnDelete);
+            btnDelete.setAttribute("class", "btn btn-danger");
+            btnDelete.innerText = "DELETE";
+            btnDelete.onclick = () => {
+              fetch("api/users/" + user._id, {
+                method: "DELETE"
+              }).then(() => {
+                location.href = "/users";
+              });
+            };
+            const btnUpdate = document.createElement("button");
+            td5.appendChild(btnUpdate);
+            btnUpdate.setAttribute("class", "btn btn-success");
+            btnUpdate.innerText = "UPDATE";
+            btnUpdate.onclick = () => {
+              location.href = "/editUser/" + user._id;
+            };
+            let linktd1 = document.createElement("a");
+            linktd1.href = "/users/" + user._id;
+            linktd1.innerText = user.username;
+            td1.appendChild(linktd1);
+            td2.innerText = user.email;
+            td3.innerText = user.isAdmin;
+          })
+        );
+      } else {
+        response.json().then(json =>
+          json.map(user => {
+            const tr = document.createElement("tr");
+            document.getElementById("table").appendChild(tr);
+            const td1 = document.createElement("td");
+            const td2 = document.createElement("td");
+            const td3 = document.createElement("td");
+
+            tr.append(td1, td2, td3);
+            if (decoded.id == user._id) {
+              const td4 = document.createElement("td");
+              const btnUpdate = document.createElement("button");
+              td4.appendChild(btnUpdate);
+              btnUpdate.setAttribute("class", "btn btn-success");
+              btnUpdate.innerText = "UPDATE";
+              btnUpdate.onclick = () => {
+                location.href = "/editUser/" + user._id;
+              };
+              tr.append(td4);
+            }
+
+            td1.innerText = user.username;
+            td2.innerText = user.email;
+            td3.innerText = user.isAdmin;
+          })
+        );
+      }
+    }
+  });
+</script>
+<% include _footer %>
