@@ -2,6 +2,30 @@
 header{
   background-color: rgba(0, 0, 0, 0.8);
 }
+
+header span{
+  font-family: 'Permanent Marker', cursive;
+  font-size: 3em;
+  color: antiquewhite;
+  margin-top: 40px !important;
+}
+
+header img{
+  margin-top: -30px;
+}
+
+header a{
+  text-decoration: none;
+}
+
+header a:hover{
+  text-decoration: none;
+}
+
+header .logo span{
+  margin-left: 10px;
+}
+
 body {
   background-image: url('/images/wallpaper.jpg');
   background-repeat: no-repeat;
