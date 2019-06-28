@@ -1,0 +1,138 @@
+<% include _header %>
+<main>
+  <div class="container">
+    <h1
+      class="text-center text-light w-25"
+      style="margin:auto; background-color: #343a40; border-radius: 30px;"
+    >
+      Book List
+    </h1>
+    <table class="table text-center mt-5">
+      <thead>
+        <tr class="bg-dark text-light">
+          <th scope="col"></th>
+          <th scope="col">Title</th>
+          <th scope="col">Author</th>
+          <th scope="col">Language</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="table" class="bg-light"></tbody>
+    </table>
+  </div>
+  <div id="divUser" class="text-center"></div>
+</main>
+
+<script>
+  const token = sessionStorage.getItem("token");
+  if (token) {
+    var decoded = jwt_decode(token);
+  }
+  // if (!token) {
+  //   location.href = "/login";
+  // }
+  fetch("/api/books", {
+    //es una promesa
+    headers: {
+      "Content-type": "application/json",
+      Authorization: "Bearer " + token
+    }
+  }).then(response => {
+    if (response.ok) {
+      if (token && decoded.isAdmin) {
+        const aBook = document.createElement("a");
+        aBook.setAttribute("href", "/newBook");
+        const btnBook = document.createElement("img");
+        btnBook.setAttribute("src", "/images/add-book.png");
+        btnBook.setAttribute("width", "50");
+        btnBook.setAttribute("value", "New Book");
+        aBook.appendChild(btnBook);
+        document.getElementById("divUser").appendChild(aBook);
+        response.json().then(json =>
+          json.map(books => {
+            const tr = document.createElement("tr");
+            tr.setAttribute("class", "list-users");
+            document.getElementById("table").appendChild(tr);
+            const tdprofile = document.createElement("td");
+            const td1 = document.createElement("td");
+            const td2 = document.createElement("td");
+            const td3 = document.createElement("td");
+            const td4 = document.createElement("td");
+            const td5 = document.createElement("td");
+            tr.append(tdprofile, td1, td2, td3, td4, td5);
+            const btnDelete = document.createElement("img");
+            td4.appendChild(btnDelete);
+            btnDelete.setAttribute("src", "/images/close.png");
+            btnDelete.setAttribute("width", "20");
+            btnDelete.setAttribute("class", "hover-edit");
+            btnDelete.setAttribute("style", "cursor:pointer");
+            btnDelete.onclick = () => {
+              fetch("api/books/" + books._id, {
+                method: "DELETE"
+              }).then(() => {
+                location.href = "/books";
+              });
+            };
+            const btnUpdate = document.createElement("img");
+            td5.appendChild(btnUpdate);
+            btnUpdate.setAttribute("src", "/images/edit-profile.png");
+            btnUpdate.setAttribute("width", "20");
+            btnUpdate.setAttribute("class", "hover-edit");
+            btnUpdate.setAttribute("style", "cursor:pointer");
+            btnUpdate.onclick = () => {
+              location.href = "/editBook/" + books._id;
+            };
+            const btnProfile = document.createElement("img");
+            btnProfile.setAttribute("src", "/images/open-book.png");
+            btnProfile.setAttribute("class", "hover-edit");
+            btnProfile.setAttribute("width", "25");
+
+            let linktd1 = document.createElement("a");
+            tdprofile.appendChild(linktd1);
+            linktd1.href = "/books/" + books._id;
+            linktd1.appendChild(btnProfile);
+            let countryFlag = document.createElement("img");
+            countryFlag.setAttribute(
+              "src",
+              "/images/flags/" + books.language + ".png"
+            );
+            countryFlag.setAttribute("width", "28");
+            countryFlag.setAttribute("title", books.language);
+
+            td1.innerText = books.title;
+            td2.innerText = books.author;
+            td3.appendChild(countryFlag);
+          })
+        );
+      } else {
+        response.json().then(json =>
+          json.map(books => {
+            const tr = document.createElement("tr");
+            tr.setAttribute("class", "list-users");
+            document.getElementById("table").appendChild(tr);
+            const tdprofile = document.createElement("td");
+            const td1 = document.createElement("td");
+            const td2 = document.createElement("td");
+            const td3 = document.createElement("td");
+            const td4 = document.createElement("td");
+            const td5 = document.createElement("td");
+            tr.append(tdprofile, td1, td2, td3, td4, td5);
+            let countryFlag = document.createElement("img");
+            countryFlag.setAttribute(
+              "src",
+              "/images/flags/" + books.language + ".png"
+            );
+            countryFlag.setAttribute("width", "28");
+            countryFlag.setAttribute("title", books.language);
+
+            td1.innerText = books.title;
+            td2.innerText = books.author;
+            td3.appendChild(countryFlag);
+          })
+        );
+      }
+    }
+  });
+</script>
+<% include _footer %>

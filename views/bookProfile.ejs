@@ -1,0 +1,97 @@
+<% include _header %>
+<main>
+  <div class="container">
+    <div class="row h1 text-light text-center">
+      <div class="col mt-5"><span id="titlebook"></span>´s profile</div>
+    </div>
+  </div>
+  <div class="container mt-5">
+      <div class="row  title-profile">
+          <div class="col text-center p-4 text-light">Book data <a id="link-profile-book" ></a></div>
+        </div>
+    <div class="row text-dark bg-light">
+      <div class="col mt-5 mr-3 user-profile">
+        <div class="row p-2">
+          <div class="col border-bottom border-dark pb-3">Title:</div>
+          <div class="col border-bottom border-dark pb-2" id="title"></div>
+        </div>
+        <div class="row p-2">
+          <div class="col border-bottom border-dark pb-3">Author:</div>
+          <div class="col border-bottom border-dark pb-2" id="author"></div>
+        </div>
+        <div class="row p-2">
+          <div class="col border-bottom border-dark pb-3">Country:</div>
+          <div class="col border-bottom border-dark pb-2" id="country"></div>
+        </div>
+        <div class="row p-2">
+          <div class="col border-bottom border-dark pb-3">Year:</div>
+          <div class="col border-bottom border-dark pb-2" id="year"></div>
+        </div>
+        <div class="row p-2">
+          <div class="col border-bottom border-dark pb-3">Pages:</div>
+          <div class="col border-bottom border-dark pb-2" id="pages"></div>
+        </div>
+        <div class="row p-2">
+          <div class="col border-bottom border-dark pb-3">Language:</div>
+          <div class="col border-bottom border-dark pb-2" id="languages"></div>
+        </div>
+      </div>
+      <div class="col-4 text-center" style="margin-top: 2px" id="image-book">
+
+      </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  const token = sessionStorage.getItem("token");
+
+  // var decoded = jwt_decode(token);
+
+  const path = location.pathname;
+  let id = path.split(["/"]).slice(-1)[0];
+
+  fetch("/api/books/" + id, {
+    //es una promesa
+    headers: {
+      "Content-type": "application/json",
+      Authorization: "Bearer " + token
+    }
+  }).then(response => {
+    if (response.ok) {
+      response.json().then(book => {
+        document.getElementById("titlebook").innerHTML = book.title;
+        document.getElementById("title").innerHTML = book.title;
+        document.getElementById("author").innerHTML = book.author;
+        let countryFlag = document.createElement("img");
+        countryFlag.setAttribute("src", "/images/flags/" + book.language + ".png");
+        countryFlag.setAttribute("width", "35");
+        countryFlag.setAttribute("title", book.language);
+        document.getElementById("country").appendChild(countryFlag);
+        document.getElementById("year").innerHTML = book.year;
+        document.getElementById("pages").innerHTML = book.pages;
+        let languageFlag = document.createElement("img");
+        languageFlag.setAttribute("src", "/images/flags/" + book.language + ".png");
+        languageFlag.setAttribute("width", "35");
+        languageFlag.setAttribute("title", book.language);
+        document.getElementById("languages").appendChild(languageFlag);
+        let imageBook = document.createElement("img");
+        imageBook.setAttribute("src", "/" +  book.imageLink);
+        imageBook.setAttribute("width", "70%");
+        imageBook.setAttribute("title", book.title);
+        document.getElementById("image-book").appendChild(imageBook);
+        const path = location.pathname;
+        let id = path.split(["/"]).slice(-1)[0];
+        const aEditBook = document.getElementById("link-profile-book");
+        aEditBook.setAttribute("href", "/editbook/" + id);
+        const btnEditBook = document.createElement("img");
+        btnEditBook.setAttribute("src", "/images/edit.png");
+        btnEditBook.setAttribute("width", "20");
+        aEditBook.appendChild(btnEditBook);
+        
+      });
+    }
+  });
+</script>
+<% include _footer %>

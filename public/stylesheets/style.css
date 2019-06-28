@@ -1,6 +1,10 @@
 
 header{
   background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  width: 100%;
+  top:0;
+  z-index: 9999;
 }
 
 header span{
@@ -22,8 +26,42 @@ header a:hover{
   text-decoration: none;
 }
 
+.hover-edit{
+  opacity: 0.5;
+}
+
+.hover-edit:hover{
+  opacity: 1;
+}
+
 header .logo span{
   margin-left: 10px;
+}
+
+header .btn-group{
+  margin: 20px 40px 0 0;
+}
+
+header .btn-group a{
+  width: 150px;
+}
+
+#form-edit-user, #form-edit-book{
+  margin-top: 130px ;
+}
+
+header .btn-group button{
+  border-radius: 0;
+}
+
+.table td, .table th{
+  padding: 0.30rem !important;
+  font-family: 'Arvo', serif;
+}
+
+main{
+  position: relative;
+  margin: 100px 0 50px 0;
 }
 
 body {
@@ -31,4 +69,155 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+#login button[type="button"] {
+  font-family: 'Permanent Marker', cursive;
+  border-top: 2px;
+  border-color: #948a78;
+  background-color: hsla(38, 25%, 45%, 0.9);
+}
+
+#login button[type="button"]:hover {
+  background-color: hsla(38, 25%, 45%, 0.6);
+}
+
+
+.login, .register{
+  font-family: 'Kalam', cursive;
+  font-weight: bold;
+  margin: 16% auto;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 20px #000000; 
+  filter: grayscale(30%);
+}
+
+.login{
+  background-image: url('/images/wallpaper-login.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.login h1{
+  color: rgb(56, 47, 33)
+}
+
+.login input[type="text"],  input[type="password"] {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.login input[type="button"], .register input[type="button"] {
+  font-family: 'Permanent Marker', cursive;
+  background-color: rgba(143, 122, 86, 0.9);
+}
+
+.login input[type="button"]:hover, .register input[type="button"]:hover {
+  background-color: rgba(92, 78, 56, 0.9);
+}
+
+.register{ 
+  background-image: url('/images/wallpaper-register.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.title-profile{
+  background-color: #130f40;
+  font-size: 1.2em;
+  font-weight: bold;
+ }
+
+.user-profile{
+  background-color: rgba(255, 255, 255);
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+.book-title{
+  background-color: #95afc0;
+  font-size: 1.2em;
+  font-weight: bold;
+ }
+ 
+tbody tr:hover{
+  background-color: rgb(214, 218, 214);
+}
+
+tbody tr{
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.table td, .table th {
+  padding: .75rem;
+  vertical-align: top;
+   border: none !important;
+}
+
+
+
+.squares-index .col {
+  height: 300px;
+  margin: 18% 20px 0 20px;
+  background-color: rgba(255, 255, 255);
+  bottom: 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+
+.squares-index img {
+  width: 70px;
+  margin: 30px auto;
+}
+
+
+.box-title{
+  margin: auto;
+  font-weight: bold;
+  text-align: center;
+  padding: 30px 0 10px 0;
+}
+
+.box-body{
+  margin: auto;
+  text-align: center;
+  padding: 0 10px 0 10px;
+}
+
+.title-index{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 3.4em;
+}
+
+.text-index .row{
+  margin-left: 0;
+}
+
+.text-index p{
+  font-size: 1.3em;
+  line-height: 27px;
+}
+
+.button-header{
+  margin: auto 40px;
+}
+
+
+.button-header input{
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.button-header input{
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+
+
+
+
+
+   
+
 

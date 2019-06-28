@@ -5,27 +5,61 @@
   }
 </style>
 
-<div class="bg-dark text-light p-3 w-25 form mt-5">
-  <form method="POST">
+<div class="text-light p-3 form" id="form-edit-user">
+  <h1
+    class="text-center text-light w-25"
+    style="margin:auto; background-color: #343a40; border-radius: 30px;"
+  >
+    Edit User
+  </h1>
+  <form method="POST" class="w-25 bg-dark p-4" style="margin: 30px auto">
     <div class="form-group">
-      <label for="exampleInputEmail1">Username</label>
       <input type="text" class="form-control" id="username" />
     </div>
     <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" name="password" id="password" />
+      <input type="text" class="form-control" name="name" id="name" />
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail1">Email</label>
+      <input type="text" class="form-control" name="surname" id="surname" />
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        id="password"
+        placeholder="-type your new password-"
+      />
+    </div>
+    <div class="form-group">
       <input type="text" class="form-control" name="email" id="email" />
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="address" id="address" />
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="bornDate" id="bornDate" />
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="country" id="country" />
     </div>
 
     <div class="form-check">
-      <input type="checkbox" class="form-check-input" name="isAdmin" id="isAdmin" />
+      <input
+        type="checkbox"
+        class="form-check-input"
+        name="isAdmin"
+        id="isAdmin"
+      />
       <label class="form-check-label" for="exampleCheck1">Admin</label>
     </div>
     <div class="text-center">
-      <input type="button" class="btn btn-primary w-25" value="Enviar" onclick="sendInfo()" />
+      <input
+        type="button"
+        class="btn btn-primary w-25"
+        value="Enviar"
+        onclick="sendInfo()"
+      />
     </div>
   </form>
 </div>
@@ -44,7 +78,11 @@
       response.json().then(user => {
         document.getElementById("username").value = user.username;
         document.getElementById("email").value = user.email;
-        console.log(user.email);
+        document.getElementById("address").value = user.address;
+        document.getElementById("country").value = user.country;
+        document.getElementById("bornDate").value = user.bornDate;
+        document.getElementById("name").value = user.name;
+        document.getElementById("surname").value = user.surname;
       });
     }
   });
@@ -57,6 +95,11 @@
     const passwordValue = document.getElementById("password").value;
     let isAdminValue = document.getElementById("isAdmin").checked;
     const emailValue = document.getElementById("email").value;
+    const countryValue = document.getElementById("country").value;
+    const nameValue = document.getElementById("name").value;
+    const surnameValue = document.getElementById("surname").value;
+    const bornDateValue = document.getElementById("bornDate").value;
+    const addressValue = document.getElementById("address").value;
 
     fetch("../api/users/" + id, {
       method: "PUT",
@@ -67,6 +110,11 @@
         username: usernameValue,
         password: passwordValue,
         isAdmin: isAdminValue,
+        country: countryValue,
+        name: nameValue,
+        surname: surnameValue,
+        bornDate: bornDateValue,
+        address: addressValue,
         email: emailValue
       })
     }).then(response => {

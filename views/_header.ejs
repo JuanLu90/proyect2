@@ -1,39 +1,119 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>MyLibrary || Where you will can manage your books</title>
+    <link rel="stylesheet" href="/stylesheets/reset.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="/javascripts/jwt-decode.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Arvo&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Kalam:700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:400,700,900"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="/images/favicon.png"
+      type="image/gif"
+      sizes="16x16"
+    />
+  </head>
 
-<head>
-  <title>Biblioteca Codespacer</title>
-  <link rel="stylesheet" href="/stylesheets/reset.css" />
-  <link rel="stylesheet" href="/stylesheets/style.css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-  <script src="/javascripts/jwt-decode.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
-</head>
-
-<body>
-  <header>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col logo mb-2">
-          <a href="/">
-            <img src="/images/logo.png" width="120" />
-            <span class="mt-4">MyLibrary</span>
-          </a>
-        </div>
-        <div class="col-2 text-right mr-4 mt-4">
-          <a href="/login">
-            <button type="button" class="btn btn-outline-success w-100">Login</button>
-          </a>
-        </div>
-        <div class="col-2 text-right mr-4 mt-4">
-          <a href="/newUser">
-            <button type="button" class="btn btn-outline-primary w-100 ">Sign</button>
-          </a>
+  <body>
+    <header>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col logo mb-2">
+            <a href="/">
+              <img src="/images/logo.png" width="120" />
+              <span class="mt-4">MyLibrary</span>
+            </a>
+          </div>
+          <div class="text-center button-header" id="button-book-header"></div>
+          <div class="text-center button-header" id="button-user-header"></div>
+          <div class="btn-group" id="login">
+            <a href="/login">
+              <button type="button" class="btn w-100">
+                Login
+              </button>
+            </a>
+            <a href="/newUser">
+              <button type="button" class="btn w-100 ">
+                Sign
+              </button>
+            </a>
+          </div>
+          <div id="login-username"></div>
+          <div id="exit-login"></div>
         </div>
       </div>
-    </div>
-  </header>
-</body>
+    </header>
 
+    <script>
+      let token2 = sessionStorage.getItem("token");
+      document
+        .getElementById("login")
+        .setAttribute("style", "margin-left: 100px;");
+      if (token2) {
+        var decoded = jwt_decode(token2);
+        document.getElementById("login").style.display = "none";
+
+        let aBookHeader = document.createElement("a");
+        aBookHeader.setAttribute("href", "/books");
+        let btnBookHeader = document.createElement("input");
+        btnBookHeader.setAttribute("type", "button");
+        btnBookHeader.setAttribute("class", "btn btn-secondary w-100");
+        btnBookHeader.setAttribute("value", "Books");
+        aBookHeader.appendChild(btnBookHeader);
+        document.getElementById("button-book-header").append(aBookHeader);
+        let aUserHeader = document.createElement("a");
+        aUserHeader.setAttribute("href", "/users");
+        let btnUserHeader = document.createElement("input");
+        btnUserHeader.setAttribute("type", "button");
+        btnUserHeader.setAttribute("class", "btn btn-secondary w-100");
+        btnUserHeader.setAttribute("value", "Users");
+        aUserHeader.appendChild(btnUserHeader);
+        document.getElementById("button-user-header").append(aUserHeader);
+        let loginUser = document.getElementById("login-username");
+        loginUser.innerText = "Hello, " + decoded.username;
+        loginUser.setAttribute(
+          "style",
+          "font-size: 2em; color: white; margin: 15px 50px 0 100px;"
+        );
+
+        const aExit = document.createElement("a");
+        const btnExit = document.createElement("img");
+        // btnUser.setAttribute("href", "/newUser");
+        btnExit.onclick = () => {
+          location.href = "/login";
+          sessionStorage.removeItem("token");
+        };
+        btnExit.setAttribute("src", "/images/logout.png");
+        btnExit.setAttribute("width", "40");
+        aExit.setAttribute("style", "cursor:pointer");
+        aExit.appendChild(btnExit);
+        document.getElementById("exit-login").appendChild(aExit);
+        aExit.appendChild(btnExit);
+        btnExit.setAttribute("style", "margin: 20px 50px 0 0 !important;");
+
+        // document.getElementById("login-username").removeAttribute("class")
+      }
+    </script>
+  </body>
 </html>

@@ -1,24 +1,26 @@
 <% include _header %>
 <main>
   <div class="container">
-    <table class="table table-warning text-center mt-5">
+    <h1 class="text-center text-light w-25" style="margin:auto; background-color: #343a40; border-radius: 30px;">User List</h1>
+    <table class="table text-center mt-5">
       <thead>
-        <tr>
+        <tr class="bg-dark text-light">
+          <th scope="col"></th>
           <th scope="col">Name</th>
-          <th scope="col">Email</th>
+          <th scope="col" id="email-hidden">Email</th>
           <th scope="col">Admin</th>
           <th></th>
           <th></th>
         </tr>
       </thead>
-      <tbody id="table"></tbody>
+      <tbody id="table" class="bg-light"></tbody>
     </table>
   </div>
   <div id="divUser" class="text-center"></div>
 </main>
 
 <script>
-  const token = sessionStorage.getItem("token");
+const token = sessionStorage.getItem("token");
   if (!token) {
     location.href = "/login";
   }
@@ -36,30 +38,29 @@
       if (decoded.isAdmin) {
         const aUser = document.createElement("a");
         aUser.setAttribute("href", "/newUser");
-        const btnUser = document.createElement("input");
-        // btnUser.setAttribute("href", "/newUser");
-        btnUser.onclick = () => {
-          location.href = "/newUser" + user._id;
-        };
-        btnUser.setAttribute("type", "button");
-        btnUser.setAttribute("class", "btn btn-primary");
-        btnUser.setAttribute("value", "New User");
+        const btnUser = document.createElement("img");
+        btnUser.setAttribute("src", "/images/add-user.svg");
+        btnUser.setAttribute("width", "50");
         aUser.appendChild(btnUser);
         document.getElementById("divUser").appendChild(aUser);
         response.json().then(json =>
           json.map(user => {
             const tr = document.createElement("tr");
+            tr.setAttribute("class", "list-users");
             document.getElementById("table").appendChild(tr);
+            const tdprofile = document.createElement("td");
             const td1 = document.createElement("td");
             const td2 = document.createElement("td");
             const td3 = document.createElement("td");
             const td4 = document.createElement("td");
             const td5 = document.createElement("td");
-            tr.append(td1, td2, td3, td4, td5);
-            const btnDelete = document.createElement("button");
+            tr.append(tdprofile, td1, td2, td3, td4, td5);
+            const btnDelete = document.createElement("img");
             td4.appendChild(btnDelete);
-            btnDelete.setAttribute("class", "btn btn-danger");
-            btnDelete.innerText = "DELETE";
+            btnDelete.setAttribute("src", "/images/close.png");
+            btnDelete.setAttribute("width", "20");
+            btnDelete.setAttribute("class", "hover-edit");
+            btnDelete.setAttribute("style", "cursor:pointer");
             btnDelete.onclick = () => {
               fetch("api/users/" + user._id, {
                 method: "DELETE"
@@ -67,46 +68,74 @@
                 location.href = "/users";
               });
             };
-            const btnUpdate = document.createElement("button");
+            const btnUpdate = document.createElement("img");
             td5.appendChild(btnUpdate);
-            btnUpdate.setAttribute("class", "btn btn-success");
-            btnUpdate.innerText = "UPDATE";
+            btnUpdate.setAttribute("src", "/images/edit-profile.png");
+            btnUpdate.setAttribute("width", "20");
+            btnUpdate.setAttribute("class", "hover-edit");
+            btnUpdate.setAttribute("style", "cursor:pointer");
             btnUpdate.onclick = () => {
               location.href = "/editUser/" + user._id;
             };
+            const btnProfile = document.createElement("img");
+            btnProfile.setAttribute("src", "/images/user.png");
+            btnProfile.setAttribute("width", "20");
+            btnProfile.setAttribute("class", "hover-edit");
             let linktd1 = document.createElement("a");
+            tdprofile.appendChild(linktd1);
             linktd1.href = "/users/" + user._id;
-            linktd1.innerText = user.username;
-            td1.appendChild(linktd1);
+            linktd1.appendChild(btnProfile);
+            td1.innerText = user.name;
             td2.innerText = user.email;
-            td3.innerText = user.isAdmin;
+            if (user.isAdmin) {
+              const keyImg = document.createElement("img");
+              keyImg.setAttribute("src", "/images/key.png");
+              keyImg.setAttribute("width", "20");
+              td3.appendChild(keyImg);
+            }
           })
         );
       } else {
         response.json().then(json =>
           json.map(user => {
             const tr = document.createElement("tr");
+            const tdprofile = document.createElement("td");
             document.getElementById("table").appendChild(tr);
             const td1 = document.createElement("td");
             const td2 = document.createElement("td");
             const td3 = document.createElement("td");
+            const td4 = document.createElement("td");
+            const td5 = document.createElement("td");
 
-            tr.append(td1, td2, td3);
             if (decoded.id == user._id) {
-              const td4 = document.createElement("td");
-              const btnUpdate = document.createElement("button");
+              const btnUpdate = document.createElement("img");
               td4.appendChild(btnUpdate);
-              btnUpdate.setAttribute("class", "btn btn-success");
-              btnUpdate.innerText = "UPDATE";
+              btnUpdate.setAttribute("src", "/images/edit-profile.png");
+              btnUpdate.setAttribute("width", "20");
+              btnUpdate.setAttribute("class", "hover-edit");
+              btnUpdate.setAttribute("style", "cursor:pointer");
               btnUpdate.onclick = () => {
                 location.href = "/editUser/" + user._id;
               };
-              tr.append(td4);
+              const btnProfile = document.createElement("img");
+              btnProfile.setAttribute("src", "/images/user.png");
+              btnProfile.setAttribute("width", "20");
+              btnProfile.setAttribute("class", "hover-edit");
+              let linktd1 = document.createElement("a");
+              tdprofile.appendChild(linktd1);
+              linktd1.href = "/users/" + user._id;
+              linktd1.appendChild(btnProfile);
+              tr.append(tdprofile, td4);
             }
-
-            td1.innerText = user.username;
+            tr.append(tdprofile, td1, td2, td3, td4, td5);
+            td1.innerText = user.name;
             td2.innerText = user.email;
-            td3.innerText = user.isAdmin;
+            if (user.isAdmin) {
+              const keyImg = document.createElement("img");
+              keyImg.setAttribute("src", "/images/key.png");
+              keyImg.setAttribute("width", "20");
+              td3.appendChild(keyImg);
+            }
           })
         );
       }

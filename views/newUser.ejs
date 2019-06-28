@@ -1,50 +1,69 @@
 <% include _header %>
 <main>
-    <style>
-        .form {
-            margin: auto;
-        }
-    </style>
-  <div class="bg-dark text-light p-3 w-25 form mt-5">
+  <div class="p-3 w-25 form register">
+    <h1 class="text-center text-light mb-4">Sign In</h1>
     <form method="POST">
       <div class="form-group">
-        <label for="exampleInputEmail1">Username</label>
-        <input type="text" class="form-control" id="username" />
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" name="password" id="password"
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          placeholder="Username"
         />
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Email</label>
-        <input type="text" class="form-control" name="email" id="email" />
+        <input type="text" class="form-control" id="name" placeholder="Name" />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          id="surname"
+          placeholder="Surname"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          name="email"
+          id="email"
+          placeholder="Email"
+        />
       </div>
 
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" name="isAdmin" id="isAdmin"
-        />
-        <label class="form-check-label" for="exampleCheck1">Admin</label>
-      </div>
       <div class="text-center">
-      <input
-        type="button"
-        class="btn btn-primary w-25"
-        value="Enviar"
-        onclick="sendInfo()"
-      />
-    </div>
+        <input
+          type="button"
+          class="btn w-100"
+          value="Send"
+          onclick="sendInfo()"
+        />
+      </div>
     </form>
   </div>
 
   <ul id="list"></ul>
 </main>
 <script>
+  if (decoded.isAdmin == false) {
+    location.href = "/";
+  }
   function sendInfo() {
     const usernameValue = document.getElementById("username").value;
     const passwordValue = document.getElementById("password").value;
-    let isAdminValue = document.getElementById("isAdmin").checked;
     const emailValue = document.getElementById("email").value;
+    const nameValue = document.getElementById("name").value;
+    const surnameValue = document.getElementById("surname").value;
 
     fetch("api/users", {
       method: "POST",
@@ -53,8 +72,9 @@
       },
       body: JSON.stringify({
         username: usernameValue,
+        name: nameValue,
+        surname: surnameValue,
         password: passwordValue,
-        isAdmin: isAdminValue,
         email: emailValue
       })
     }).then(response => {

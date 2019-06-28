@@ -1,0 +1,121 @@
+<% include _header %>
+<main>
+  <div class="p-3 w-25 form register">
+    <h1 class="text-center mb-4">New Book</h1>
+    <form method="POST">
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          name="title"
+          id="title"
+          placeholder="title"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          name="author"
+          id="author"
+          placeholder="author"
+        />
+      </div>
+      <div class="form-group">
+        <select class="w-100" name="country" id="country">
+          <option value="" selected="selected">Select Country</option>
+          <option value="English">English</option>
+          <option value="Danish">Danish</option>
+          <option value="French">French</option>
+          <option value="German">German</option>
+          <option value="Hebrew">Hebrew</option>
+          <option value="Spanish">Spanish</option>
+          <option value="Italian">Italian</option>
+          <option value="Russian">Russian</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select class="w-100" name="language" id="language">
+          <option value="" selected="selected">Select Language</option>
+          <option value="English">English</option>
+          <option value="Danish">Danish</option>
+          <option value="French">French</option>
+          <option value="German">German</option>
+          <option value="Hebrew">Hebrew</option>
+          <option value="Spanish">Spanish</option>
+          <option value="Italian">Italian</option>
+          <option value="Russian">Russian</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          name="pages"
+          id="pages"
+          placeholder="pages"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          name="year"
+          id="year"
+          placeholder="year"
+        />
+      </div>
+
+      <div class="text-center">
+        <input
+          type="button"
+          class="btn w-100"
+          value="Enviar"
+          onclick="sendInfo()"
+        />
+      </div>
+    </form>
+  </div>
+
+  <ul id="list"></ul>
+</main>
+<script>
+  let token = sessionStorage.getItem("token");
+  var decoded = jwt_decode(token);
+  if (!token || decoded.isAdmin == false) {
+    location.href = "/";
+  }
+
+  function sendInfo() {
+    const titleValue = document.getElementById("title").value;
+    const authorValue = document.getElementById("author").value;
+    const countryValue = document.getElementById("country").value;
+    const yearValue = document.getElementById("year").value;
+    const pagesValue = document.getElementById("pages").value;
+    const languageValue = document.getElementById("language").value;
+  //   var e = document.getElementById("ddlViewBy");
+  // var strUser = e.options[e.selectedIndex].value;
+
+    fetch("api/books", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title: titleValue,
+        author: authorValue,
+        country: countryValue,
+        year: yearValue,
+        pages: pagesValue,
+        language: languageValue
+      })
+    }).then(response => {
+      if (response.ok) {
+        response.text().then(text => {
+          location.href = "/books";
+        });
+      }
+    });
+  }
+</script>
+<% include _footer %>

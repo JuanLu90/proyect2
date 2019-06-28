@@ -1,3 +1,4 @@
+/* 1 */
 {
     "_id" : ObjectId("5d120c5d3ae291d02bde6e17"),
     "author" : "Chinua Achebe",
@@ -7,7 +8,11 @@
     "link" : "https://en.wikipedia.org/wiki/Things_Fall_Apart\n",
     "pages" : 209,
     "title" : "Things Fall Apart",
-    "year" : 1958
+    "year" : 1958,
+    "users" : [ 
+        ObjectId("5d0b96b63ae291d02bde1cfa"), 
+        ObjectId("5d0b96b63ae291d02bde1d00")
+    ]
 }
 
 /* 2 */
@@ -20,7 +25,8 @@
     "link" : "https://en.wikipedia.org/wiki/Fairy_Tales_Told_for_Children._First_Collection.\n",
     "pages" : 784,
     "title" : "Fairy tales",
-    "year" : 1836
+    "year" : 1836,
+    "users" : ObjectId("5d120c5d3ae291d02bde6e29")
 }
 
 /* 3 */
@@ -33,7 +39,10 @@
     "link" : "https://en.wikipedia.org/wiki/Divine_Comedy\n",
     "pages" : 928,
     "title" : "The Divine Comedy",
-    "year" : 1315
+    "year" : 1315,
+    "users" : [ 
+        ObjectId("5d0b96b63ae291d02bde1d03")
+    ]
 }
 
 /* 4 */
@@ -46,7 +55,10 @@
     "link" : "https://en.wikipedia.org/wiki/Epic_of_Gilgamesh\n",
     "pages" : 160,
     "title" : "The Epic Of Gilgamesh",
-    "year" : -1700
+    "year" : -1700,
+    "users" : [ 
+        ObjectId("5d0b974d3ae291d02bde1d34")
+    ]
 }
 
 /* 5 */
@@ -59,7 +71,11 @@
     "link" : "https://en.wikipedia.org/wiki/Book_of_Job\n",
     "pages" : 176,
     "title" : "The Book Of Job",
-    "year" : -600
+    "year" : -600,
+    "users" : [ 
+        ObjectId("5d0b97a93ae291d02bde1d43"), 
+        ObjectId("5d0b96b63ae291d02bde1d00")
+    ]
 }
 
 /* 6 */
@@ -72,7 +88,11 @@
     "link" : "https://en.wikipedia.org/wiki/One_Thousand_and_One_Nights\n",
     "pages" : 288,
     "title" : "One Thousand and One Nights",
-    "year" : 1200
+    "year" : 1200,
+    "users" : [ 
+        ObjectId("5d0b96b63ae291d02bde1cfa"), 
+        ObjectId("5d0b96b63ae291d02bde1d00")
+    ]
 }
 
 /* 7 */
@@ -85,7 +105,11 @@
     "link" : "https://en.wikipedia.org/wiki/Nj%C3%A1ls_saga\n",
     "pages" : 384,
     "title" : "Njál's Saga",
-    "year" : 1350
+    "year" : 1350,
+    "users" : [ 
+        ObjectId("5d0b96b63ae291d02bde1cfa"), 
+        ObjectId("5d0b96b63ae291d02bde1d00")
+    ]
 }
 
 /* 8 */
@@ -98,7 +122,11 @@
     "link" : "https://en.wikipedia.org/wiki/Pride_and_Prejudice\n",
     "pages" : 226,
     "title" : "Pride and Prejudice",
-    "year" : 1813
+    "year" : 1813,
+    "users" : [ 
+        ObjectId("5d0b96b63ae291d02bde1cfa"), 
+        ObjectId("5d0b96b63ae291d02bde1d00")
+    ]
 }
 
 /* 9 */
@@ -111,7 +139,11 @@
     "link" : "https://en.wikipedia.org/wiki/Le_P%C3%A8re_Goriot\n",
     "pages" : 443,
     "title" : "Le Père Goriot",
-    "year" : 1835
+    "year" : 1835,
+    "users" : [ 
+        ObjectId("5d0b96b63ae291d02bde1cfa"), 
+        ObjectId("5d0b96b63ae291d02bde1d00")
+    ]
 }
 
 /* 10 */
@@ -124,7 +156,10 @@
     "link" : "https://en.wikipedia.org/wiki/Molloy_(novel)\n",
     "pages" : 256,
     "title" : "Molloy, Malone Dies, The Unnamable, the trilogy",
-    "year" : 1952
+    "year" : 1952,
+    "users" : [ 
+        ObjectId("5d123fc460297c22b4236f00")
+    ]
 }
 
 /* 11 */
@@ -137,7 +172,11 @@
     "link" : "https://en.wikipedia.org/wiki/The_Decameron\n",
     "pages" : 1024,
     "title" : "The Decameron",
-    "year" : 1351
+    "year" : 1351,
+    "users" : [ 
+        ObjectId("5d0b96b63ae291d02bde1cfa"), 
+        ObjectId("5d0b96b63ae291d02bde1d00")
+    ]
 }
 
 /* 12 */
@@ -150,7 +189,10 @@
     "link" : "https://en.wikipedia.org/wiki/Ficciones\n",
     "pages" : 224,
     "title" : "Ficciones",
-    "year" : 1965
+    "year" : 1965,
+    "users" : [ 
+        ObjectId("5d11f329758fc12484446133")
+    ]
 }
 
 /* 13 */
@@ -163,7 +205,10 @@
     "link" : "https://en.wikipedia.org/wiki/Wuthering_Heights\n",
     "pages" : 342,
     "title" : "Wuthering Heights",
-    "year" : 1847
+    "year" : 1847,
+    "users" : [ 
+        ObjectId("5d10f90a88e09c27e4bb3d4b")
+    ]
 }
 
 /* 14 */
@@ -176,7 +221,10 @@
     "link" : "https://en.wikipedia.org/wiki/The_Stranger_(novel)\n",
     "pages" : 185,
     "title" : "The Stranger",
-    "year" : 1942
+    "year" : 1942,
+    "users" : [ 
+        ObjectId("5d0b97ec3ae291d02bde1d53")
+    ]
 }
 
 /* 15 */
@@ -189,7 +237,10 @@
     "link" : "\n",
     "pages" : 320,
     "title" : "Poems",
-    "year" : 1952
+    "year" : 1952,
+    "users" : [ 
+        ObjectId("5d0b97d63ae291d02bde1d4d")
+    ]
 }
 
 /* 16 */
@@ -202,7 +253,8 @@
     "link" : "https://en.wikipedia.org/wiki/Journey_to_the_End_of_the_Night\n",
     "pages" : 505,
     "title" : "Journey to the End of the Night",
-    "year" : 1932
+    "year" : 1932,
+    "users" : 1.0
 }
 
 /* 17 */
@@ -215,7 +267,8 @@
     "link" : "https://en.wikipedia.org/wiki/Don_Quixote\n",
     "pages" : 1056,
     "title" : "Don Quijote De La Mancha",
-    "year" : 1610
+    "year" : 1610,
+    "users" : 1.0
 }
 
 /* 18 */
@@ -228,7 +281,8 @@
     "link" : "https://en.wikipedia.org/wiki/The_Canterbury_Tales\n",
     "pages" : 544,
     "title" : "The Canterbury Tales",
-    "year" : 1450
+    "year" : 1450,
+    "users" : 1.0
 }
 
 /* 19 */
@@ -241,7 +295,8 @@
     "link" : "https://en.wikipedia.org/wiki/List_of_short_stories_by_Anton_Chekhov\n",
     "pages" : 194,
     "title" : "Stories",
-    "year" : 1886
+    "year" : 1886,
+    "users" : 1.0
 }
 
 /* 20 */
@@ -254,7 +309,8 @@
     "link" : "https://en.wikipedia.org/wiki/Nostromo\n",
     "pages" : 320,
     "title" : "Nostromo",
-    "year" : 1904
+    "year" : 1904,
+    "users" : 1.0
 }
 
 /* 21 */
@@ -267,7 +323,8 @@
     "link" : "https://en.wikipedia.org/wiki/Great_Expectations\n",
     "pages" : 194,
     "title" : "Great Expectations",
-    "year" : 1861
+    "year" : 1861,
+    "users" : 1.0
 }
 
 /* 22 */
@@ -280,7 +337,8 @@
     "link" : "https://en.wikipedia.org/wiki/Jacques_the_Fatalist\n",
     "pages" : 596,
     "title" : "Jacques the Fatalist",
-    "year" : 1796
+    "year" : 1796,
+    "users" : 1.0
 }
 
 /* 23 */
@@ -293,7 +351,8 @@
     "link" : "https://en.wikipedia.org/wiki/Berlin_Alexanderplatz\n",
     "pages" : 600,
     "title" : "Berlin Alexanderplatz",
-    "year" : 1929
+    "year" : 1929,
+    "users" : 1.0
 }
 
 /* 24 */
@@ -306,7 +365,8 @@
     "link" : "https://en.wikipedia.org/wiki/Crime_and_Punishment\n",
     "pages" : 551,
     "title" : "Crime and Punishment",
-    "year" : 1866
+    "year" : 1866,
+    "users" : 1.0
 }
 
 /* 25 */
@@ -319,7 +379,8 @@
     "link" : "https://en.wikipedia.org/wiki/The_Idiot\n",
     "pages" : 656,
     "title" : "The Idiot",
-    "year" : 1869
+    "year" : 1869,
+    "users" : 1.0
 }
 
 /* 26 */
@@ -332,7 +393,8 @@
     "link" : "https://en.wikipedia.org/wiki/Demons_(Dostoyevsky_novel)\n",
     "pages" : 768,
     "title" : "The Possessed",
-    "year" : 1872
+    "year" : 1872,
+    "users" : 1.0
 }
 
 /* 27 */
@@ -345,7 +407,8 @@
     "link" : "https://en.wikipedia.org/wiki/The_Brothers_Karamazov\n",
     "pages" : 824,
     "title" : "The Brothers Karamazov",
-    "year" : 1880
+    "year" : 1880,
+    "users" : 1.0
 }
 
 /* 28 */
@@ -358,7 +421,8 @@
     "link" : "https://en.wikipedia.org/wiki/Middlemarch\n",
     "pages" : 800,
     "title" : "Middlemarch",
-    "year" : 1871
+    "year" : 1871,
+    "users" : 1.0
 }
 
 /* 29 */
@@ -371,7 +435,8 @@
     "link" : "https://en.wikipedia.org/wiki/Invisible_Man\n",
     "pages" : 581,
     "title" : "Invisible Man",
-    "year" : 1952
+    "year" : 1952,
+    "users" : 1.0
 }
 
 /* 30 */
@@ -384,7 +449,8 @@
     "link" : "https://en.wikipedia.org/wiki/Medea_(play)\n",
     "pages" : 104,
     "title" : "Medea",
-    "year" : -431
+    "year" : -431,
+    "users" : 1.0
 }
 
 /* 31 */
@@ -397,7 +463,8 @@
     "link" : "https://en.wikipedia.org/wiki/Absalom,_Absalom!\n",
     "pages" : 313,
     "title" : "Absalom, Absalom!",
-    "year" : 1936
+    "year" : 1936,
+    "users" : 1.0
 }
 
 /* 32 */
@@ -410,7 +477,8 @@
     "link" : "https://en.wikipedia.org/wiki/The_Sound_and_the_Fury\n",
     "pages" : 326,
     "title" : "The Sound and the Fury",
-    "year" : 1929
+    "year" : 1929,
+    "users" : 1.0
 }
 
 /* 33 */
@@ -423,7 +491,8 @@
     "link" : "https://en.wikipedia.org/wiki/Madame_Bovary\n",
     "pages" : 528,
     "title" : "Madame Bovary",
-    "year" : 1857
+    "year" : 1857,
+    "users" : 1.0
 }
 
 /* 34 */
@@ -436,7 +505,8 @@
     "link" : "https://en.wikipedia.org/wiki/Sentimental_Education\n",
     "pages" : 606,
     "title" : "Sentimental Education",
-    "year" : 1869
+    "year" : 1869,
+    "users" : 1.0
 }
 
 /* 35 */
@@ -449,7 +519,8 @@
     "link" : "https://en.wikipedia.org/wiki/Gypsy_Ballads\n",
     "pages" : 218,
     "title" : "Gypsy Ballads",
-    "year" : 1928
+    "year" : 1928,
+    "users" : 1.0
 }
 
 /* 36 */
@@ -462,7 +533,8 @@
     "link" : "https://en.wikipedia.org/wiki/One_Hundred_Years_of_Solitude\n",
     "pages" : 417,
     "title" : "One Hundred Years of Solitude",
-    "year" : 1967
+    "year" : 1967,
+    "users" : 1.0
 }
 
 /* 37 */
@@ -475,10 +547,11 @@
     "link" : "https://en.wikipedia.org/wiki/Love_in_the_Time_of_Cholera\n",
     "pages" : 368,
     "title" : "Love in the Time of Cholera",
-    "year" : 1985
+    "year" : 1985,
+    "users" : 1.0
 }
 
-
+/* 38 */
 {
     "_id" : ObjectId("5d120c5d3ae291d02bde6e86"),
     "author" : "Johann Wolfgang von Goethe",
@@ -488,10 +561,11 @@
     "link" : "https://en.wikipedia.org/wiki/Goethe%27s_Faust\n",
     "pages" : 158,
     "title" : "Faust",
-    "year" : 1832
+    "year" : 1832,
+    "users" : 1.0
 }
 
-
+/* 39 */
 {
     "_id" : ObjectId("5d120c5d3ae291d02bde6e89"),
     "author" : "Nikolai Gogol",
@@ -501,10 +575,11 @@
     "link" : "https://en.wikipedia.org/wiki/Dead_Souls\n",
     "pages" : 432,
     "title" : "Dead Souls",
-    "year" : 1842
+    "year" : 1842,
+    "users" : 1.0
 }
 
-
+/* 40 */
 {
     "_id" : ObjectId("5d120c5d3ae291d02bde6e8c"),
     "author" : "Günter Grass",
@@ -514,10 +589,11 @@
     "link" : "https://en.wikipedia.org/wiki/The_Tin_Drum\n",
     "pages" : 600,
     "title" : "The Tin Drum",
-    "year" : 1959
+    "year" : 1959,
+    "users" : 1.0
 }
 
-
+/* 41 */
 {
     "_id" : ObjectId("5d120c5d3ae291d02bde6e8f"),
     "author" : "João Guimarães Rosa",
@@ -527,10 +603,11 @@
     "link" : "https://en.wikipedia.org/wiki/The_Devil_to_Pay_in_the_Backlands\n",
     "pages" : 494,
     "title" : "The Devil to Pay in the Backlands",
-    "year" : 1956
+    "year" : 1956,
+    "users" : 1.0
 }
 
-
+/* 42 */
 {
     "_id" : ObjectId("5d120c5d3ae291d02bde6e92"),
     "author" : "Knut Hamsun",
@@ -540,10 +617,11 @@
     "link" : "https://en.wikipedia.org/wiki/Hunger_(Hamsun_novel)\n",
     "pages" : 176,
     "title" : "Hunger",
-    "year" : 1890
+    "year" : 1890,
+    "users" : 1.0
 }
 
-
+/* 43 */
 {
     "_id" : ObjectId("5d120c5d3ae291d02bde6e95"),
     "author" : "Ernest Hemingway",
@@ -553,10 +631,11 @@
     "link" : "https://en.wikipedia.org/wiki/The_Old_Man_and_the_Sea\n",
     "pages" : 128,
     "title" : "The Old Man and the Sea",
-    "year" : 1952
+    "year" : 1952,
+    "users" : 1.0
 }
 
-
+/* 44 */
 {
     "_id" : ObjectId("5d120c5d3ae291d02bde6e98"),
     "author" : "Homer",
@@ -566,10 +645,11 @@
     "link" : "https://en.wikipedia.org/wiki/Iliad\n",
     "pages" : 608,
     "title" : "Iliad",
-    "year" : -735
+    "year" : -735,
+    "users" : 1.0
 }
 
-
+/* 45 */
 {
     "_id" : ObjectId("5d120c5d3ae291d02bde6e9b"),
     "author" : "Homer",
@@ -579,10 +659,11 @@
     "link" : "https://en.wikipedia.org/wiki/Odyssey\n",
     "pages" : 374,
     "title" : "Odyssey",
-    "year" : -800
+    "year" : -800,
+    "users" : 1.0
 }
 
-
+/* 46 */
 {
     "_id" : ObjectId("5d120c5d3ae291d02bde6e9e"),
     "author" : "Henrik Ibsen",
@@ -592,10 +673,11 @@
     "link" : "https://en.wikipedia.org/wiki/A_Doll%27s_House\n",
     "pages" : 68,
     "title" : "A Doll's House",
-    "year" : 1879
+    "year" : 1879,
+    "users" : 1.0
 }
 
-
+/* 47 */
 {
     "_id" : ObjectId("5d120c5d3ae291d02bde6ea1"),
     "author" : "James Joyce",
@@ -605,10 +687,11 @@
     "link" : "https://en.wikipedia.org/wiki/Ulysses_(novel)\n",
     "pages" : 228,
     "title" : "Ulysses",
-    "year" : 1922
+    "year" : 1922,
+    "users" : 1.0
 }
 
-
+/* 48 */
 {
     "_id" : ObjectId("5d120c5d3ae291d02bde6ea4"),
     "author" : "Franz Kafka",
@@ -618,10 +701,11 @@
     "link" : "https://en.wikipedia.org/wiki/Franz_Kafka_bibliography#Short_stories\n",
     "pages" : 488,
     "title" : "Stories",
-    "year" : 1924
+    "year" : 1924,
+    "users" : 1.0
 }
 
-
+/* 49 */
 {
     "_id" : ObjectId("5d120c5d3ae291d02bde6ea7"),
     "author" : "Franz Kafka",
@@ -631,10 +715,11 @@
     "link" : "https://en.wikipedia.org/wiki/The_Trial\n",
     "pages" : 160,
     "title" : "The Trial",
-    "year" : 1925
+    "year" : 1925,
+    "users" : 1.0
 }
 
-
+/* 50 */
 {
     "_id" : ObjectId("5d120c5d3ae291d02bde6eaa"),
     "author" : "Franz Kafka",
@@ -644,5 +729,6 @@
     "link" : "https://en.wikipedia.org/wiki/The_Castle_(novel)\n",
     "pages" : 352,
     "title" : "The Castle",
-    "year" : 1926
+    "year" : 1926,
+    "users" : 1.0
 }

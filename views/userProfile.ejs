@@ -2,63 +2,52 @@
 <main>
   <div class="container">
     <div class="row h1 text-light text-center">
-      <div class="col mt-5">
-        <span id="titleusername"></span>´s profile
-      </div>
+      <div class="col mt-5"><span id="titleusername"></span>´s profile</div>
     </div>
   </div>
   <div class="container mt-5">
-    <div class="row text-light">
-      <div class="col mt-5 mr-3 bg-dark">
-        <div class="row h3">
-          <div class="col text-center p-4">Profile data</div>
+    <div class="row text-dark">
+      <div class="col-5 mt-5 mr-3 user-profile">
+        <div class="row title-profile">
+          <div class="col text-center p-4 text-light">
+            Profile data <a id="link-profile-user"></a>
+          </div>
         </div>
-        <hr class="bg-light">
-        <div class="row pl-3">
-          <div class="col-5">Username:</div>
-          <div class="col-5" id="username"></div>
+        <div class="row p-2">
+          <div class="col border-bottom border-dark pb-3">Username:</div>
+          <div class="col border-bottom border-dark pb-2" id="username"></div>
         </div>
-        <hr class="bg-light">
-        <div class="row pl-3">
-          <div class="col-5">Name:</div>
-          <div class="col-5" id="username"></div>
+        <div class="row p-2">
+          <div class="col border-bottom border-dark pb-3">Name:</div>
+          <div class="col border-bottom border-dark pb-2" id="name"></div>
         </div>
-        <hr class="bg-light">
-        <div class="row pl-3">
-          <div class="col-5">Surname:</div>
-          <div class="col-5" id="username"></div>
+        <div class="row p-2">
+          <div class="col border-bottom border-dark pb-3">Surname:</div>
+          <div class="col border-bottom border-dark pb-2" id="surname"></div>
         </div>
-        <hr class="bg-light">
-        <div class="row pl-3">
-          <div class="col-5">Email:</div>
-          <div class="col-5" id="email"></div>
+        <div class="row p-2">
+          <div class="col border-bottom border-dark pb-3">Email:</div>
+          <div class="col border-bottom border-dark pb-2" id="email"></div>
         </div>
-        <hr class="bg-light">
-        <div class="row pl-3">
-          <div class="col-5">Address:</div>
-          <div class="col-5" id="email"></div>
+        <div class="row p-2">
+          <div class="col border-bottom border-dark pb-3">Address:</div>
+          <div class="col border-bottom border-dark pb-2" id="address"></div>
         </div>
-        <hr class="bg-light">
-        <div class="row pl-3">
-          <div class="col-5">Born Date:</div>
-          <div class="col-5" id="email"></div>
+        <div class="row p-2">
+          <div class="col border-bottom border-dark pb-3">Born Date:</div>
+          <div class="col border-bottom border-dark pb-2" id="borndate"></div>
         </div>
-        <hr class="bg-light">
-        <div class="row pl-3">
-          <div class="col-5">Country:</div>
-          <div class="col-5" id="email"></div>
+        <div class="row p-2">
+          <div class="col border-bottom border-dark pb-3">Country:</div>
+          <div class="col border-bottom border-dark pb-2" id="country"></div>
         </div>
-        <hr class="bg-light">
       </div>
-      <div class="col mt-5 ml-3 bg-dark">
-        <div class="row h3">
-          <div class="col text-center p-4">Books</div>
+      <div class="col-6 mt-5 ml-3">
+        <div class="row">
+          <div class="col text-center p-4 book-title">Books List</div>
         </div>
-        <div class="row pl-3">
-          <div class="col">Title: <span id="title"></span></div>
-        </div>
-        <div class="row pl-3">
-          <div class="col">Author:<span id="author"></span></div>
+        <div class="row p-3 text-dark book-list">
+          <div class="card-columns " id="databooks"></div>
         </div>
       </div>
     </div>
@@ -68,11 +57,8 @@
 <script>
   const token = sessionStorage.getItem("token");
 
-  // var decoded = jwt_decode(token);
-
   const path = location.pathname;
   let id = path.split(["/"]).slice(-1)[0];
-  console.log(id)
 
   fetch("/api/users/" + id, {
     //es una promesa
@@ -82,11 +68,71 @@
     }
   }).then(response => {
     if (response.ok) {
-      console.log(window.location.href)
       response.json().then(user => {
         document.getElementById("titleusername").innerHTML = user.username;
         document.getElementById("username").innerHTML = user.username;
         document.getElementById("email").innerHTML = user.email;
+        document.getElementById("address").innerHTML = user.address;
+        document.getElementById("name").innerHTML = user.name;
+        document.getElementById("surname").innerHTML = user.surname;
+        document.getElementById("country").innerHTML = user.country;
+        let userBornDate = user.bornDate;
+        if (userBornDate) {
+          let dateString = userBornDate.split(["T"])[0];
+          document.getElementById("borndate").innerHTML =
+            dateString + " (yyyy-mm-dd)";
+        }
+
+        const path = location.pathname;
+        let id = path.split(["/"]).slice(-1)[0];
+        const aEditUser = document.getElementById("link-profile-user");
+        aEditUser.setAttribute("href", "/edituser/" + id);
+        const btnEditUser = document.createElement("img");
+        btnEditUser.setAttribute("src", "/images/edit.png");
+        btnEditUser.setAttribute("width", "20");
+        aEditUser.appendChild(btnEditUser);
+
+        for (i = 0; i < user.books.length; i++) {
+          let dataBooks = document.getElementById("databooks");
+          let divCard = document.createElement("div");
+          divCard.setAttribute("class", "card");
+          divCard.setAttribute("style", "width:152px;");
+          divCard.setAttribute("style", "margin:10px;");
+          dataBooks.append(divCard);
+          let CardImage = document.createElement("img");
+          CardImage.setAttribute("class", "card-img-top");
+          CardImage.setAttribute("width", "100");
+          CardImage.setAttribute("height", "170");
+          let divCardBody = document.createElement("div");
+          divCardBody.setAttribute("class", "card-body");
+          divCardBody.setAttribute("style", "padding:0.35rem;");
+          let cardTitle = document.createElement("span");
+          cardTitle.setAttribute("class", "card-title");
+          let cardAuthor = document.createElement("span");
+          let jumpLine = document.createElement("br");
+          let jumpLine2 = document.createElement("br");
+          let jumpLine3 = document.createElement("br");
+          cardAuthor.setAttribute("class", "card-title");
+          CardImage.setAttribute("src", "/" + user.books[i].imageLink);
+          let title2 = document.createElement("span");
+          title2.setAttribute("style", "font-weight:bold;");
+          title2.innerText = "Title: ";
+          let author2 = document.createElement("span");
+          author2.setAttribute("style", "font-weight:bold;");
+          author2.innerText = "Author: ";
+          cardTitle.innerText = user.books[i].title;
+          cardAuthor.innerText = user.books[i].author;
+          divCardBody.append(
+            title2,
+            jumpLine,
+            cardTitle,
+            jumpLine2,
+            author2,
+            jumpLine3,
+            cardAuthor
+          );
+          divCard.append(CardImage, divCardBody);
+        }
       });
     }
   });

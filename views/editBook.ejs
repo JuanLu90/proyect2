@@ -1,0 +1,104 @@
+<% include _header %>
+<style>
+  .form {
+    margin: auto;
+  }
+</style>
+
+<div class="text-light p-3 form" id="form-edit-book">
+    <h1 class="text-center text-light w-25" style="margin:auto; background-color: #343a40; border-radius: 30px;" >
+        Edit Book
+      </h1>
+  <form method="POST" class="w-25 bg-dark p-4" style="margin: 30px auto">
+    <div class="form-group">
+      <input type="text" class="form-control" name="title"  id="title" />
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="author" id="author" />
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="country" id="country" />
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="language" id="language" />
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="pages" id="pages" />
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="year" id="year" />
+    </div>
+    <!-- <div class="form-group">
+      <label>ImageLink</label>
+      <input type="text" class="form-control" name="imageLink" id="imageLink" />
+    </div> -->
+    <div class="text-center">
+      <input
+        type="button"
+        class="btn btn-primary w-25"
+        value="Enviar"
+        onclick="sendInfo()"
+      />
+    </div>
+  </form>
+</div>
+
+<ul id="list"></ul>
+
+<script>
+  const path = location.pathname;
+  let id = path.split(["/"]).slice(-1)[0];
+  fetch("/api/books/" + id, {
+    headers: {
+      "Content-type": "application/json"
+    }
+  }).then(response => {
+    if (response.ok) {
+      response.json().then(book => {
+        document.getElementById("title").value = book.title;
+        document.getElementById("author").value = book.author;
+        document.getElementById("country").value = book.country;
+        document.getElementById("language").value = book.language;
+        document.getElementById("pages").value = book.pages;
+        document.getElementById("year").value = book.year;
+        // document.getElementById("imageLink").value = book.imageLink;
+      });
+    }
+  });
+
+  function sendInfo() {
+    const path = location.pathname;
+    let id = path.split(["/"]).slice(-1)[0];
+
+    const titleValue = document.getElementById("title").value;
+    const authorValue = document.getElementById("author").value;
+    const countryValue = document.getElementById("country").value;
+    const languageValue = document.getElementById("language").value;
+    const pagesValue = document.getElementById("pages").value;
+    const yearValue = document.getElementById("year").value;
+    // const imageLinkValue = document.getElementById("imageLink").value;
+
+    fetch("../api/books/" + id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title: titleValue,
+        author: authorValue,
+        country: countryValue,
+        language: languageValue,
+        pages: pagesValue,
+        year: yearValue
+        // imageLink: imageLinkValue,
+      })
+    }).then(response => {
+      if (response.ok) {
+        response.text().then(text => {
+          location.href = "/books";
+        });
+      }
+    });
+  }
+</script>
+<% include _footer %>
