@@ -6,7 +6,7 @@
       <thead>
         <tr class="bg-dark text-light">
           <th scope="col"></th>
-          <th scope="col">Name</th>
+          <th scope="col">Username</th>
           <th scope="col" id="email-hidden">Email</th>
           <th scope="col">Admin</th>
           <th></th>
@@ -85,7 +85,7 @@ const token = sessionStorage.getItem("token");
             tdprofile.appendChild(linktd1);
             linktd1.href = "/users/" + user._id;
             linktd1.appendChild(btnProfile);
-            td1.innerText = user.name;
+            td1.innerText = user.username;
             td2.innerText = user.email;
             if (user.isAdmin) {
               const keyImg = document.createElement("img");
@@ -128,7 +128,7 @@ const token = sessionStorage.getItem("token");
               tr.append(tdprofile, td4);
             }
             tr.append(tdprofile, td1, td2, td3, td4, td5);
-            td1.innerText = user.name;
+            td1.innerText = user.username;
             td2.innerText = user.email;
             if (user.isAdmin) {
               const keyImg = document.createElement("img");

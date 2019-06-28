@@ -55,7 +55,7 @@ router.get("/users", (req, res) => {
 
       global.dbo
         .collection("users")
-        .find({}, { projection: { name: 1, email: 1, isAdmin: 1 } })
+        .find({}, { projection: { username: 1, email: 1, isAdmin: 1 } })
         .toArray(function(err, result) {
           if (err) reject(err);
           else {

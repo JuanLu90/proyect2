@@ -14,13 +14,30 @@
   </h1>
   <form method="POST" class="w-25 bg-dark p-4" style="margin: 30px auto">
     <div class="form-group">
-      <input type="text" class="form-control" id="username" />
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        placeholder="username"
+      />
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" name="name" id="name" />
+      <input
+        type="text"
+        class="form-control"
+        name="name"
+        id="name"
+        placeholder="name"
+      />
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" name="surname" id="surname" />
+      <input
+        type="text"
+        class="form-control"
+        name="surname"
+        id="surname"
+        placeholder="surname"
+      />
     </div>
     <div class="form-group">
       <input
@@ -32,26 +49,45 @@
       />
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" name="email" id="email" />
+      <input
+        type="text"
+        class="form-control"
+        name="email"
+        id="email"
+        placeholder="email"
+      />
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" name="address" id="address" />
+      <input
+        type="text"
+        class="form-control"
+        name="address"
+        id="address"
+        placeholder="address"
+      />
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" name="bornDate" id="bornDate" />
+      <input
+        type="text"
+        class="form-control"
+        name="bornDate"
+        id="bornDate"
+        placeholder="bornDate"
+      />
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" name="country" id="country" />
+      <input
+        type="text"
+        class="form-control"
+        name="country"
+        id="country"
+        placeholder="country"
+      />
     </div>
 
-    <div class="form-check">
-      <input
-        type="checkbox"
-        class="form-check-input"
-        name="isAdmin"
-        id="isAdmin"
-      />
-      <label class="form-check-label" for="exampleCheck1">Admin</label>
+    <div class="form-check" id="form-check" hidden>
+      <input type="checkbox" name="isAdmin" id="isAdmin" class="form-check-input"/>
+      <label for="">Admin</label>
     </div>
     <div class="text-center">
       <input
@@ -67,8 +103,11 @@
 <ul id="list"></ul>
 
 <script>
+  const token = sessionStorage.getItem("token");
+  var decoded = jwt_decode(token);
   const path = location.pathname;
   let id = path.split(["/"]).slice(-1)[0];
+
   fetch("/api/users/" + id, {
     headers: {
       "Content-type": "application/json"
@@ -80,9 +119,16 @@
         document.getElementById("email").value = user.email;
         document.getElementById("address").value = user.address;
         document.getElementById("country").value = user.country;
-        document.getElementById("bornDate").value = user.bornDate;
+        let userBornDate = user.bornDate;
+        if (userBornDate) {
+          let dateString = userBornDate.split(["T"])[0];
+          document.getElementById("bornDate").value = dateString;
+        }
         document.getElementById("name").value = user.name;
         document.getElementById("surname").value = user.surname;
+        if (decoded.isAdmin) {
+          document.getElementById("form-check").removeAttribute("hidden");
+        }
       });
     }
   });
@@ -93,7 +139,12 @@
 
     const usernameValue = document.getElementById("username").value;
     const passwordValue = document.getElementById("password").value;
-    let isAdminValue = document.getElementById("isAdmin").checked;
+    let isAdminValue;
+    if (decoded.isAdmin) {
+      isAdminValue = document.getElementById("isAdmin").checked;
+    } else {
+    }
+
     const emailValue = document.getElementById("email").value;
     const countryValue = document.getElementById("country").value;
     const nameValue = document.getElementById("name").value;

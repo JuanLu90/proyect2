@@ -206,11 +206,7 @@ tbody tr{
 .button-header input{
   font-size: 1.2em;
   font-weight: bold;
-}
-
-.button-header input{
-  font-size: 1.2em;
-  font-weight: bold;
+  padding: 1px 10px;
 }
 
 
